@@ -3,7 +3,14 @@
 <head th:replace="~{fragments/layout.html :: head}"></head>
 <body>
     <header th:replace="~{fragments/layout.html :: header}"></header>
-    <main th:replace="~{fragments/layout.html :: main}"></main>
+
+    <div class="container main-container my-3" th:fragment="main">
+        <article>
+            <h1 class="h1">Úvod</h1>
+            <p>Vítejte v aplikaci pro evidenci pojištění. Pro přístup do databáze aplikace je nutné se přihlásit. Po klientském přihlášení můžete zobrazit svůj profil, svá pojištění a své pojistné události. Další informace o aplikaci najdete v sekci O aplikaci.</p>
+        </article>
+    </div>
+
     <footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

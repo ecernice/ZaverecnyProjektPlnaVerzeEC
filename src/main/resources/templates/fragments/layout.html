@@ -12,7 +12,7 @@
 <header th:fragment="header">
     <nav class="navbar navbar-expand-md navbar-dark custom-navbar bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" th:href="@{/}">
                 Evidence pojištění
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,16 +22,16 @@
             <div class="collapse navbar-collapse" id="nav-content">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pojištěnci</a>
+                        <a class="nav-link" th:href="@{/insureds}">Pojištěnci</a>
                     </li>
                     <li class=" nav-item">
-                        <a class="nav-link" href="#">Pojištění</a>
+                        <a class="nav-link" th:href="@{/insurances}">Pojištění</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pojistné události</a>
+                        <a class="nav-link" th:href="@{/incidents}">Pojistné události</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">O aplikaci</a>
+                        <a class="nav-link" th:href="@{/about}">O aplikaci</a>
                     </li>
                 </ul>
             </div>
@@ -39,10 +39,10 @@
             <div class="nav justify-content-end">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Přihlásit</a>
+                        <a class="nav-link" th:href="@{/login}">Přihlásit</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Registrovat</a>
+                        <a class="nav-link" th:href="@{/registration}">Registrovat</a>
                     </li>
                 </ul>
             </div>
