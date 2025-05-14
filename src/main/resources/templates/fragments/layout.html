@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/styles/style.css}" type="text/css"/>
+    <script th:src="@{/scripts/bootstrap.bundle.min.js}"></script>
+    <title>Evidence pojištění</title>
 </head>
 <body>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-md navbar-dark custom-navbar bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                Evidence pojištění
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pojištěnci</a>
+                    </li>
+                    <li class=" nav-item">
+                        <a class="nav-link" href="#">Pojištění</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pojistné události</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">O aplikaci</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav justify-content-end">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Přihlásit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Registrovat</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container main-container my-3" th:fragment="main">
+    <article>
+    </article>
+</div>
+
+<footer th:fragment="footer">
+    <div class="container footer-container mt-2">
+        <p><a href="#">Kontakt</a></p>
+    </div>
+</footer>
 
 </body>
 </html>
