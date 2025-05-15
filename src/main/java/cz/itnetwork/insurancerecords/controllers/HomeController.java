@@ -16,19 +16,4 @@ public class HomeController {
         return "pages/home/about";
     }
 
-    @GetMapping("/incidents")
-    public String renderIncidents() {
-        return "pages/home/incidents";
-    }
-
-    @GetMapping("/insurances")
-    public String renderInsurances() {
-        return "pages/home/insurances";
-    }
-
-    @GetMapping("/insureds")
-    public String renderInsureds() {
-        return "pages/home/insureds";
-    }
-
 }
