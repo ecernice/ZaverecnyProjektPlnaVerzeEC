@@ -6,9 +6,20 @@
 
 <div class="container main-container my-3" th:fragment="main">
     <article>
-        <h2 class="h2">Pojištěnci</h2>
-        <p>Tabulka</p>
-        <p>Navigace: Předchozí, další, 1,2,3...</p>
+        <header>
+            <h2 class="h2">Pojištěnci</h2>
+        </header>
+
+        <section>
+            <p class="text-center">
+                <a class="btn btn-primary" th:href="@{/database/insureds/create}">Nový pojištěnec</a>
+            </p>
+
+            <ul class="list-group" id="insureds">
+
+            </ul>
+            <p>Navigace: Předchozí, další, 1,2,3...</p>
+        </section>
     </article>
 </div>
 

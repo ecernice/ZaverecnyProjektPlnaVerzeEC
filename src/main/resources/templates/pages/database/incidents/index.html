@@ -6,9 +6,20 @@
 
 <div class="container main-container my-3" th:fragment="main">
     <article>
-        <h2 class="h2">Pojistné události</h2>
-        <p>Tabulka</p>
-        <p>Navigace: Předchozí, další, 1,2,3...</p>
+        <header>
+            <h2 class="h2">Pojistné události</h2>
+        </header>
+
+        <section>
+            <p class="text-center">
+                <a class="btn btn-primary" th:href="@{/database/incidents/create}">Nová pojistná událost</a>
+            </p>
+
+            <ul class="list-group" id="incidents">
+
+            </ul>
+            <p>Navigace: Předchozí, další, 1,2,3...</p>
+        </section>
     </article>
 </div>
 
