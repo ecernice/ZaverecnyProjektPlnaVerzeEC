@@ -2,6 +2,7 @@ package cz.itnetwork.insurancerecords.models.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class InsuredDTO {
 
@@ -12,21 +13,24 @@ public class InsuredDTO {
     private String surname;
 
     @NotBlank(message = "Vyplňte email")
+    @Email(message = "Zadejte platný formát emailu")
     private String email;
 
-    @NotBlank(message = "Vyplňte telefon")
-    private String phone;
+    @NotBlank(message = "Zadejte telefonní číslo")
+    @Pattern(
+            regexp = "^(\\+\\d{1,4}|00\\d{1,4})?\\s?-?(\\d{3})\\s?-?(\\d{3})\\s?-?(\\d{3,4})$",
+            message = "Zadejte platné telefonní číslo."
+    )
+    private String phoneNumber;
 
     @NotBlank(message = "Vyplňte ulici a číslo popisné")
     private String street;
 
-    @NotBlank(message = "Vyplňte email")
-    @Email(message = "Zadejte platný formát emailové adresy")
+    @NotBlank(message = "Vyplňte ulici a číslo popisné")
     private String city;
 
     @NotBlank(message = "Vyplňte PSČ")
     private String zipcode;
-
 
     public String getName() {
         return name;
@@ -52,12 +56,12 @@ public class InsuredDTO {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getStreet() {
