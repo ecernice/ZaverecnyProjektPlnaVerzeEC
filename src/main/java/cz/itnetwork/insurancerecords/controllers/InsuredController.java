@@ -1,7 +1,9 @@
 package cz.itnetwork.insurancerecords.controllers;
 
+import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,7 +17,7 @@ public class InsuredController {
     }
 
     @GetMapping ("/create")
-    public String renderCreate() {
+    public String renderCreateForm(@ModelAttribute InsuredDTO insured) {
 
         return "pages/database/insureds/create";
     }

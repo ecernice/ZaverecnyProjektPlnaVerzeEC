@@ -11,10 +11,53 @@
         </header>
 
         <section>
-            <!--formulář -->
-            <p class="text-center">
-                <a class="btn btn-primary" th:href="@{}">Uložit</a>
-            </p>
+            <form class="container"
+                  method="post"
+                  th:action="@{/database/insureds/create}"
+                  th:object="${insuredDTO}">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="first-name">Jméno</label>
+                        <input type="text" class="form-control" id="first-name" placeholder="Jméno">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="last-name">Příjmení</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Příjmení">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="Email">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="last-name">Telefon</label>
+                        <input type="text" class="form-control" id="phone-number" placeholder="Telefon">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="street">Ulice a číslo popisné</label>
+                        <input type="text" class="form-control" id="street" placeholder="Ulice a číslo popisné">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="city">Město</label>
+                        <input type="text" class="form-control" id="city" placeholder="Město">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <label for="zip">PSČ</label>
+                        <input type="text" class="form-control" id="zip" placeholder="PSČ">
+                    </div>
+
+                </div>
+
+                <p class="text-center mt-">
+                    <button type="submit" class="btn btn-primary">Uložit</button>
+                </p>
+            </form>
+
         </section>
     </article>
 </div>
