@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="cz-cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
 <body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
 
+<div class="container main-container my-3" th:fragment="main">
+    <article>
+        <div class="row">
+            <header class="col-md-10 offset-md-2">
+                <h2 class="h2 mb-3">Nové pojištění</h2>
+            </header>
+        </div>
+        <section class="row">
+            <div class="col-md-10 offset-md-2">
+                <form method="post"
+                      th:action="@{/database/insurances/create}"
+                      th:object="${insuranceDTO}">
+                    <div class="row">
+                        <div class="col-md-10 mb-3">
+                            <label for="insuranceType">Druh pojištění</label>
+                            <input th:field="*{insuranceType}" type="text" class="form-control" id="insuranceType">
+                            <small class="text-danger" th:errors="*{insuranceType}"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="amount">Částka</label>
+                            <input th:field="*{amount}" type="text" class="form-control" id="amount" placeholder="částka">
+                            <small class="text-danger" th:errors="*{amount}"></small>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="insuranceSubject">Předmět pojištění</label>
+                            <input th:field="*{insuranceSubject}" type="text" class="form-control" id="insuranceSubject" placeholder="Předmět pojištění">
+                            <small class="text-danger" th:errors="*{insuranceSubject}"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="validFrom">Platnost od</label>
+                            <input th:field="*{validFrom}" type="date" class="form-control" id="validFrom" placeholder="Platnost od">
+                            <small class="text-danger" th:errors="*{validTo}"></small>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="validTo">Platnost do</label>
+                            <input th:field="*{validTo}" type="date" class="form-control" id="validTo" placeholder="Platnost do">
+                            <small class="text-danger" th:errors="*{validTo}"></small>
+                        </div>
+                    </div>
+
+                    <p class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Uložit</button>
+                    </p>
+                </form>
+            </div>
+        </section>
+    </article>
+</div>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

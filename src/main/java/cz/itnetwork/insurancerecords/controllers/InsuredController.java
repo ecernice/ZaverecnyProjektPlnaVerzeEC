@@ -49,7 +49,7 @@ public class InsuredController {
         // Zde budeme později pracovat s databází
         System.out.println(insured.getSurname() + " – " + insured.getPhoneNumber());
 
-        return "redirect:/articles";
+        return "redirect:/insureds";
     }
 
 }

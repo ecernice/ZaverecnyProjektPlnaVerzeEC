@@ -1,7 +1,13 @@
 package cz.itnetwork.insurancerecords.controllers;
 
+import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
+import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,8 +21,8 @@ public class InsuranceController {
     }
 
     @GetMapping ("/create")
-    public String renderCreate() {
-
+    public String renderCreateForm(@ModelAttribute InsuranceDTO insured) {
+        System.out.println("Zobrazuji formulář pro nové pojištění");
         return "pages/database/insurances/create";
     }
 
@@ -30,6 +36,21 @@ public class InsuranceController {
     public String renderEdit() {
 
         return "pages/database/insurances/edit";
+    }
+
+    @PostMapping("create")
+    public String createInsurance(
+            @Valid @ModelAttribute InsuranceDTO insurance,
+            BindingResult result
+    ) {
+        if (result.hasErrors()){
+            System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
+            return renderCreateForm(insurance);}
+
+        // Zde budeme později pracovat s databází
+        System.out.println(insurance.getInsuranceType() + " – " + insurance.getInsuranceSubject());
+
+        return "redirect:/insurances";
     }
 
 }

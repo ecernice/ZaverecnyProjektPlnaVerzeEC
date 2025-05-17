@@ -1,0 +1,65 @@
+package cz.itnetwork.insurancerecords.models.dto;
+
+import java.time.LocalDate;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+public class InsuranceDTO {
+
+    @NotBlank(message = "Vyberte typ pojištění")
+    private String insuranceType;
+
+    @Positive(message = "Vyplňte částku - kladné celé číslo")
+    private int amount;
+
+    @NotBlank(message = "Vyplňte předmět pojištění")
+    private String insuranceSubject;
+
+    @NotNull(message = "Vyplňte datum začátku platnosti")
+    private LocalDate validFrom;
+
+    @NotNull(message = "Vyplňte datum konce platnosti")
+    private LocalDate validTo;
+
+
+    public String getInsuranceType() {
+        return insuranceType;
+    }
+
+    public void setInsuranceType(String insuranceType) {
+        this.insuranceType = insuranceType;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getInsuranceSubject() {
+        return insuranceSubject;
+    }
+
+    public void setInsuranceSubject(String insuranceSubject) {
+        this.insuranceSubject = insuranceSubject;
+    }
+
+    public LocalDate getValidFrom() {
+        return validFrom;
+    }
+
+    public void setValidFrom(LocalDate validFrom) {
+        this.validFrom = validFrom;
+    }
+
+    public LocalDate getValidTo() {
+        return validTo;
+    }
+
+    public void setValidTo(LocalDate validTo) {
+        this.validTo = validTo;
+    }
+}
