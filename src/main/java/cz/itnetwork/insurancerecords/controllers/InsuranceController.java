@@ -2,6 +2,7 @@ package cz.itnetwork.insurancerecords.controllers;
 
 import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
 import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
+import cz.itnetwork.insurancerecords.models.enums.InsuranceType;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,11 @@ public class InsuranceController {
     public String renderCreateForm(@ModelAttribute InsuranceDTO insured) {
         System.out.println("Zobrazuji formulář pro nové pojištění");
         return "pages/database/insurances/create";
+    }
+
+    @ModelAttribute("insuranceTypes")
+    public InsuranceType[] insuranceTypes() {
+        return InsuranceType.values();
     }
 
     @GetMapping ("/detail")

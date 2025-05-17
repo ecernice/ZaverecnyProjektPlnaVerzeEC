@@ -1,14 +1,16 @@
 package cz.itnetwork.insurancerecords.models.dto;
 
 import java.time.LocalDate;
+
+import cz.itnetwork.insurancerecords.models.enums.InsuranceType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public class InsuranceDTO {
 
-    @NotBlank(message = "Vyberte typ pojištění")
-    private String insuranceType;
+    @NotNull(message = "Vyberte typ pojištění")
+    private InsuranceType insuranceType;
 
     @Positive(message = "Vyplňte částku - kladné celé číslo")
     private int amount;
@@ -23,11 +25,11 @@ public class InsuranceDTO {
     private LocalDate validTo;
 
 
-    public String getInsuranceType() {
+    public InsuranceType getInsuranceType() {
         return insuranceType;
     }
 
-    public void setInsuranceType(String insuranceType) {
+    public void setInsuranceType(InsuranceType insuranceType) {
         this.insuranceType = insuranceType;
     }
 
