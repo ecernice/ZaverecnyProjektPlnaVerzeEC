@@ -18,8 +18,13 @@
                       th:object="${insuranceDTO}">
                     <div class="row">
                         <div class="col-md-10 mb-3">
-                            <label for="insuranceType">Druh pojištění</label>
-                            <input th:field="*{insuranceType}" type="text" class="form-control" id="insuranceType">
+                            <label for="insuranceType">Vyberte z nabídky druh pojištění</label>
+                            <select th:field="*{insuranceType}" class="form-control" id="insuranceType">
+                                <option th:each="type : ${insuranceTypes}"
+                                        th:value="${type}"
+                                        th:text="${type.label}">
+                                </option>
+                            </select>
                             <small class="text-danger" th:errors="*{insuranceType}"></small>
                         </div>
                     </div>
