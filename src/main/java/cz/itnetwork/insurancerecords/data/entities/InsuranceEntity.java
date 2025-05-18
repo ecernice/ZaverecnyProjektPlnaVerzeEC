@@ -15,7 +15,7 @@ public class InsuranceEntity {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private InsuranceType type;
+    private InsuranceType insuranceType;
 
     @Column(nullable = false)
     private int amount;
@@ -38,12 +38,12 @@ public class InsuranceEntity {
         this.insuranceId = insuranceId;
     }
 
-    public InsuranceType getType() {
-        return type;
+    public InsuranceType getInsuranceType() {
+        return insuranceType;
     }
 
-    public void setType(InsuranceType type) {
-        this.type = type;
+    public void setInsuranceType(InsuranceType insuranceType) {
+        this.insuranceType = insuranceType;
     }
 
     public int getAmount() {

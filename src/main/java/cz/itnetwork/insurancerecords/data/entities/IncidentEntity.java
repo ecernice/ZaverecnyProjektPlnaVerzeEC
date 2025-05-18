@@ -16,7 +16,7 @@ public class IncidentEntity {
     private String title;
 
     @Column(nullable = false)
-    private int description;
+    private String description;
 
     @Column(nullable = false)
     private LocalDate incidentDate;
@@ -40,11 +40,11 @@ public class IncidentEntity {
         this.title = title;
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
