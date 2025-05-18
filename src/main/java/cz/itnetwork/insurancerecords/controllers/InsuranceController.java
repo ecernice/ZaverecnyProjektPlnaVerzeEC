@@ -3,7 +3,9 @@ package cz.itnetwork.insurancerecords.controllers;
 import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
 import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
 import cz.itnetwork.insurancerecords.models.enums.InsuranceType;
+import cz.itnetwork.insurancerecords.models.services.InsuranceService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping ("/database/insurances")
 public class InsuranceController {
+
+    @Autowired
+    private InsuranceService insuranceService;
 
     @GetMapping
     public String renderIndex() {
@@ -53,8 +58,7 @@ public class InsuranceController {
             System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
             return renderCreateForm(insurance);}
 
-        // Zde budeme později pracovat s databází
-        System.out.println(insurance.getInsuranceType() + " – " + insurance.getInsuranceSubject());
+        insuranceService.create(insurance);
 
         return "redirect:/insurances";
     }

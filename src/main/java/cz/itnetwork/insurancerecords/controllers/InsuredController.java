@@ -1,7 +1,9 @@
 package cz.itnetwork.insurancerecords.controllers;
 
 import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
+import cz.itnetwork.insurancerecords.models.services.InsuredService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping ("/database/insureds")
 public class InsuredController {
+
+    @Autowired
+    private InsuredService insuredService;
 
     @GetMapping
     public String renderIndex() {
@@ -46,8 +51,7 @@ public class InsuredController {
             System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
             return renderCreateForm(insured);}
 
-        // Zde budeme později pracovat s databází
-        System.out.println(insured.getSurname() + " – " + insured.getPhoneNumber());
+        insuredService.create(insured);
 
         return "redirect:/insureds";
     }
