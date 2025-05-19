@@ -9,6 +9,7 @@ import cz.itnetwork.insurancerecords.data.entities.InsuredEntity;
 
 @Entity
 @Table(name = "Insurances")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class InsuranceEntity {
 
     @Id

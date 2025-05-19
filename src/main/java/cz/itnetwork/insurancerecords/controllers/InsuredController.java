@@ -43,6 +43,7 @@ public class InsuredController {
         }
         model.addAttribute("insured", insured);
         System.out.println("Zobrazuji detail pojištěnce");
+
         return "pages/database/insureds/detail";
     }
 

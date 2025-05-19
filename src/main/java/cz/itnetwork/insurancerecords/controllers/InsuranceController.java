@@ -45,7 +45,11 @@ public class InsuranceController {
                 Model model
     ) {
         InsuranceDTO insurance = insuranceService.getById(insuranceId);
+        if (insurance == null) {
+            throw new RuntimeException("Pojištění nebylo nalezeno!");
+        }
         model.addAttribute("insurance", insurance);
+        System.out.println("Zobrazuji detail pojištění");
 
         return "pages/database/insurances/detail";
     }
