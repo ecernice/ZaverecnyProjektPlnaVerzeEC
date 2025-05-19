@@ -26,6 +26,8 @@ public class InsuranceDTO {
     @NotNull(message = "Vyplňte datum konce platnosti")
     private LocalDate validTo;
 
+    private long InsuredId;
+
     public long getInsuranceId() {
         return InsuranceId;
     }
@@ -72,5 +74,13 @@ public class InsuranceDTO {
 
     public void setValidTo(LocalDate validTo) {
         this.validTo = validTo;
+    }
+
+    public long getInsuredId() {
+        return InsuredId;
+    }
+
+    public void setInsuredId(long insuredId) {
+        InsuredId = insuredId;
     }
 }

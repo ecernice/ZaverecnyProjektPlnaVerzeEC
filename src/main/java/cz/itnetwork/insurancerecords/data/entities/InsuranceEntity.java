@@ -3,6 +3,8 @@ package cz.itnetwork.insurancerecords.data.entities;
 import cz.itnetwork.insurancerecords.models.enums.InsuranceType;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+
 import cz.itnetwork.insurancerecords.data.entities.InsuredEntity;
 
 @Entity
@@ -33,6 +35,8 @@ public class InsuranceEntity {
     @JoinColumn(name= "insured_id", nullable = false)
     private InsuredEntity insured;
 
+    @OneToMany(mappedBy = "insurance")
+    private List<IncidentEntity> incidents;
 
     public long getInsuranceId() {
         return insuranceId;
@@ -88,5 +92,13 @@ public class InsuranceEntity {
 
     public void setInsured(InsuredEntity insured) {
         this.insured = insured;
+    }
+
+    public List<IncidentEntity> getIncidents() {
+        return incidents;
+    }
+
+    public void setIncidents(List<IncidentEntity> incidents) {
+        this.incidents = incidents;
     }
 }

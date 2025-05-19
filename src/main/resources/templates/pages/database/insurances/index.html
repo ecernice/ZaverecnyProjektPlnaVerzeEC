@@ -18,7 +18,6 @@
             <table class="table table-bordered" id="insurances">
                 <thead>
                 <tr>
-                    <th scope="col" class="align-middle">Id pojištění</th>
                     <th scope="col" class="align-middle">Jméno pojištěnce</th>
                     <th scope="col" class="align-middle">Předmět pojištění</th>
                     <th scope="col"></th>
@@ -26,7 +25,6 @@
                 </thead>
                 <tbody>
                 <tr th:each="insurance: ${insurances}" >
-                    <td><a th:href="@{'/database/insurances' + ${insurance.insuranceId}}" th:text="${insuranceId}" class="align-middle"></a></td>
                     <td th:text="${insurance.insuredEntity.name + ' ' + insurance.insuredEntity.surname}"></td>
                     <td th:text="${insurance.insuranceSubject}" class="align-middle"></td>
                     <td>

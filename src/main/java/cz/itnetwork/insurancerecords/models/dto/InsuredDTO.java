@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
+import java.util.List;
+
 public class InsuredDTO {
 
     public long InsuredId;
@@ -33,6 +35,10 @@ public class InsuredDTO {
 
     @NotBlank(message = "Vyplňte PSČ")
     private String zipcode;
+
+    private List<Long> insurancesIDs;
+
+    private List<Long> incidentsIds;
 
     public long getInsuredId() {
         return InsuredId;
@@ -96,5 +102,21 @@ public class InsuredDTO {
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public List<Long> getInsurancesIDs() {
+        return insurancesIDs;
+    }
+
+    public void setInsurancesIDs(List<Long> insurancesIDs) {
+        this.insurancesIDs = insurancesIDs;
+    }
+
+    public List<Long> getIncidentsIds() {
+        return incidentsIds;
+    }
+
+    public void setIncidentsIds(List<Long> incidentsIds) {
+        this.incidentsIds = incidentsIds;
     }
 }
