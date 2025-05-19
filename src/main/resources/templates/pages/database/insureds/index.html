@@ -25,7 +25,7 @@
                </thead>
                <tbody>
                    <tr th:each="insured: ${insureds}" >
-                       <td><a th:href="@{'/database/insureds' + ${insured.insuredId}}" th:text="${insured.name + ' ' + insured.surname}" class="align-middle"></a></td>
+                       <td><a th:href="@{'/database/insureds/' + ${insured.insuredId}}" th:text="${insured.name + ' ' + insured.surname}" class="align-middle"></a></td>
                        <td th:text="${insured.street + ', ' + insured.city}" class="align-middle"></td>
                        <td>
                            <a class="btn btn-danger mr-2" th:href="@{/database/insureds/delete}">Odstranit</a>

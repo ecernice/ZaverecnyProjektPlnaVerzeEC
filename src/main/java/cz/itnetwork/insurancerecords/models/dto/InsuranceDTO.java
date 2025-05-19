@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Positive;
 
 public class InsuranceDTO {
 
-    private long InsuranceId;
+    private long insuranceId;
 
     @NotNull(message = "Vyberte typ pojištění")
     private InsuranceType insuranceType;
@@ -26,14 +26,14 @@ public class InsuranceDTO {
     @NotNull(message = "Vyplňte datum konce platnosti")
     private LocalDate validTo;
 
-    private long InsuredId;
+    private long insuredId;
 
     public long getInsuranceId() {
-        return InsuranceId;
+        return insuranceId;
     }
 
     public void setInsuranceId(long insuranceId) {
-        InsuranceId = insuranceId;
+        this.insuranceId = insuranceId;
     }
 
     public InsuranceType getInsuranceType() {
@@ -77,10 +77,10 @@ public class InsuranceDTO {
     }
 
     public long getInsuredId() {
-        return InsuredId;
+        return insuredId;
     }
 
     public void setInsuredId(long insuredId) {
-        InsuredId = insuredId;
+        this.insuredId = insuredId;
     }
 }

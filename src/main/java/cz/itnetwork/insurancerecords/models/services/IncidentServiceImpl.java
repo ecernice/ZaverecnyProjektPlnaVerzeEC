@@ -32,4 +32,12 @@ public class IncidentServiceImpl implements IncidentService {
                 .toList();
     }
 
+    @Override
+    public IncidentDTO getById(long incidentId) {
+        IncidentEntity fetchedIncident = incidentRepository
+                .findById(incidentId)
+                .orElseThrow();
+        return incidentMapper.toDTO(fetchedIncident);
+    }
+
 }

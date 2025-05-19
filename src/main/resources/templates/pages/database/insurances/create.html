@@ -16,7 +16,7 @@
                 <form method="post"
                       th:action="@{/database/insurances/create}"
                       th:object="${insuranceDTO}">
-                    <input type="hidden" th:field="*{insuredEntity.insuredId}" />
+                    <input type="hidden" th:field="*{insuredId}" />
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <label for="insuranceType">Vyberte z nabídky druh pojištění</label>
