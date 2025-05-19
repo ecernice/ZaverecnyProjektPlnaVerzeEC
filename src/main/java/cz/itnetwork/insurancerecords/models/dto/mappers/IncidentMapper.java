@@ -9,4 +9,6 @@ public interface IncidentMapper {
 
     IncidentEntity toEntity(IncidentDTO source);
 
+    IncidentDTO toDTO(IncidentEntity source);
+
 }

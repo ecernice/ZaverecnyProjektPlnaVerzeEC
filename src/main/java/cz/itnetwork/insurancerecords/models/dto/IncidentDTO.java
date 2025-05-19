@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 public class IncidentDTO {
 
+    public long IncidentId;
+
     @NotBlank (message = "Vyplňte název události")
     private String title;
 
@@ -19,6 +21,13 @@ public class IncidentDTO {
     @NotNull (message = "Uvěďte částku pojistného plnění")
     private int insuranceAmount;
 
+    public long getIncidentId() {
+        return IncidentId;
+    }
+
+    public void setIncidentId(long incidentId) {
+        IncidentId = incidentId;
+    }
 
     public String getTitle() {
         return title;

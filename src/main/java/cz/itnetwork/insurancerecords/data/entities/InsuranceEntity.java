@@ -2,8 +2,8 @@ package cz.itnetwork.insurancerecords.data.entities;
 
 import cz.itnetwork.insurancerecords.models.enums.InsuranceType;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
+import cz.itnetwork.insurancerecords.data.entities.InsuredEntity;
 
 @Entity
 @Table(name = "Insurances")
@@ -28,6 +28,10 @@ public class InsuranceEntity {
 
     @Column(nullable = false)
     private LocalDate validTo;
+
+    @ManyToOne
+    @JoinColumn(name= "insured_id", nullable = false)
+    private InsuredEntity insured;
 
 
     public long getInsuranceId() {
@@ -76,5 +80,13 @@ public class InsuranceEntity {
 
     public void setValidTo(LocalDate validTo) {
         this.validTo = validTo;
+    }
+
+    public InsuredEntity getInsured() {
+        return insured;
+    }
+
+    public void setInsured(InsuredEntity insured) {
+        this.insured = insured;
     }
 }

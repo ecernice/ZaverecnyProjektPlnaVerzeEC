@@ -1,6 +1,9 @@
 package cz.itnetwork.insurancerecords.data.entities;
 
 import jakarta.persistence.*;
+import cz.itnetwork.insurancerecords.data.entities.InsuranceEntity;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Insureds")
@@ -30,6 +33,9 @@ public class InsuredEntity {
 
     @Column(nullable = false)
     private String zipcode;
+
+    @OneToMany(mappedBy = "insured")
+    private List<InsuranceEntity> insurances;
 
     public long getInsuredId() {
         return insuredId;
@@ -94,4 +100,13 @@ public class InsuredEntity {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+    public List<InsuranceEntity> getInsurances() {
+        return insurances;
+    }
+
+    public void setInsurances(List<InsuranceEntity> insurances) {
+        this.insurances = insurances;
+    }
+
 }

@@ -9,4 +9,6 @@ public interface InsuranceMapper {
 
     InsuranceEntity toEntity(InsuranceDTO source);
 
+    InsuranceDTO toDTO(InsuranceEntity source);
+
 }

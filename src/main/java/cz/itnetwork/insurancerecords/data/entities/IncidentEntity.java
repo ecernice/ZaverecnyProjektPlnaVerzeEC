@@ -24,6 +24,14 @@ public class IncidentEntity {
     @Column(nullable = false)
     private int insuranceAmount;
 
+    @ManyToOne
+    @JoinColumn(name = "insured_id", nullable = false)
+    private InsuredEntity insured;
+
+    @ManyToOne
+    @JoinColumn(name = "insurance_id", nullable = false)
+    private InsuranceEntity insurance;
+
     public long getIncidentId() {
         return incidentId;
     }
@@ -62,5 +70,21 @@ public class IncidentEntity {
 
     public void setInsuranceAmount(int insuranceAmount) {
         this.insuranceAmount = insuranceAmount;
+    }
+
+    public InsuredEntity getInsured() {
+        return insured;
+    }
+
+    public void setInsured(InsuredEntity insured) {
+        this.insured = insured;
+    }
+
+    public InsuranceEntity getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(InsuranceEntity insurance) {
+        this.insurance = insurance;
     }
 }

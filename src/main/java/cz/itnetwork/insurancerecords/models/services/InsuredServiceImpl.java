@@ -6,6 +6,8 @@ import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
 import cz.itnetwork.insurancerecords.models.dto.mappers.InsuredMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 @Service
 public class InsuredServiceImpl implements InsuredService {
@@ -21,6 +23,13 @@ public class InsuredServiceImpl implements InsuredService {
         InsuredEntity newInsured = insuredMapper.toEntity(insured);
 
         insuredRepository.save(newInsured);
+    }
+
+    @Override
+    public List<InsuredDTO> getAll() {
+        return StreamSupport.stream(insuredRepository.findAll().spliterator(), false)
+                .map(i -> insuredMapper.toDTO(i))
+                .toList();
     }
 
 }

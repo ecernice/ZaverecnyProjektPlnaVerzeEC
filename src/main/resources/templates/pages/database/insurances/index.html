@@ -15,9 +15,28 @@
                 <a class="btn btn-primary" th:href="@{/database/insurances/create}">Nové pojištění</a>
             </p>
 
-            <ul class="list-group" id="insurances">
+            <table class="table table-bordered" id="insurances">
+                <thead>
+                <tr>
+                    <th scope="col" class="align-middle">Id pojištění</th>
+                    <th scope="col" class="align-middle">Jméno pojištěnce</th>
+                    <th scope="col" class="align-middle">Předmět pojištění</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="insurance: ${insurances}" >
+                    <td><a th:href="@{'/database/insurances' + ${insurance.insuranceId}}" th:text="${insuranceId}" class="align-middle"></a></td>
+                    <td th:text="${insurance.insuredEntity.name + ' ' + insurance.insuredEntity.surname}"></td>
+                    <td th:text="${insurance.insuranceSubject}" class="align-middle"></td>
+                    <td>
+                        <a class="btn btn-danger mr-2" th:href="@{/database/insurances/delete}">Odstranit</a>
+                        <a class="btn btn-warning" th:href="@{/database/insurance/edit}">Editovat</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-            </ul>
             <p>Navigace: Předchozí, další, 1,2,3...</p>
         </sections>
     </article>

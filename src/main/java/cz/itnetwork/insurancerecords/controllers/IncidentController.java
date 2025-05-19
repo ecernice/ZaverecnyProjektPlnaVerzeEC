@@ -6,11 +6,14 @@ import cz.itnetwork.insurancerecords.models.services.IncidentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping ("/database/incidents")
@@ -20,7 +23,9 @@ public class IncidentController {
     private IncidentService incidentService;
 
     @GetMapping
-    public String renderIndex() {
+    public String renderIndex(Model model) {
+        List<IncidentDTO> incidents = incidentService.getAll();
+        model.addAttribute("incidents", incidents);
 
         return "pages/database/incidents/index";
     }

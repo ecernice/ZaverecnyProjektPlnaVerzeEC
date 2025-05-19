@@ -9,4 +9,6 @@ public interface InsuredMapper {
 
     InsuredEntity toEntity(InsuredDTO source);
 
+    InsuredDTO toDTO(InsuredEntity source);
+
 }

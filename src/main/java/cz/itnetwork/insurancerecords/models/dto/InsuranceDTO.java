@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Positive;
 
 public class InsuranceDTO {
 
+    public long InsuranceId;
+
     @NotNull(message = "Vyberte typ pojištění")
     private InsuranceType insuranceType;
 
@@ -24,6 +26,13 @@ public class InsuranceDTO {
     @NotNull(message = "Vyplňte datum konce platnosti")
     private LocalDate validTo;
 
+    public long getInsuranceId() {
+        return InsuranceId;
+    }
+
+    public void setInsuranceId(long insuranceId) {
+        InsuranceId = insuranceId;
+    }
 
     public InsuranceType getInsuranceType() {
         return insuranceType;

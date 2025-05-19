@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Pattern;
 
 public class InsuredDTO {
 
+    public long InsuredId;
+
     @NotBlank(message = "Vyplňte jméno")
     private String name;
 
@@ -31,6 +33,14 @@ public class InsuredDTO {
 
     @NotBlank(message = "Vyplňte PSČ")
     private String zipcode;
+
+    public long getInsuredId() {
+        return InsuredId;
+    }
+
+    public void setInsuredId(long insuredId) {
+        InsuredId = insuredId;
+    }
 
     public String getName() {
         return name;
