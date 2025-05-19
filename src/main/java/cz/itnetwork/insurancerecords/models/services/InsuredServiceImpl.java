@@ -32,4 +32,12 @@ public class InsuredServiceImpl implements InsuredService {
                 .toList();
     }
 
+    @Override
+    public InsuredDTO getById(long insuredId) {
+        InsuredEntity fetchedInsured = insuredRepository
+                .findById(insuredId)
+                .orElseThrow();
+        return insuredMapper.toDTO(fetchedInsured);
+    }
+
 }

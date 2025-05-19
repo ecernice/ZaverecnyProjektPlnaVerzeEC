@@ -6,8 +6,16 @@
 
 <div class="container main-container my-3" th:fragment="main">
     <article>
-        <header>
-            <p>Jan Novák...</p>
+        <header class="container-flex">
+            <img src="#" alt="ikona pojištěnce">
+            <ul class="list-group">
+                <li th:text="${insured.name + ' ' + insured.surname}" class="list-group-item"></li>
+                <li th:text="${insured.street}" class="list-group-item"></li>
+                <li th:text="${insured.city}" class="list-group-item"></li>
+                <li th:text="${insured.zip}" class="list-group-item"></li>
+                <li th:text="${insured.email}" class="list-group-item"></li>
+                <li th:text="${insured.phoneNumber}" class="list-group-item"></li>
+            </ul>
         </header>
 
         <section>
@@ -20,7 +28,7 @@
 
             <p class="container-flex">
                 <div class="d-flex justify-content-center">
-                    <a class="btn btn-primary mx-1" th:href="@{/database/insurances/create}">Přidat pojištění</a>
+                    <a class="btn btn-primary mx-1" th:href="@{'/database/insurances/create/new?insuredId=' + ${insuredEntity.insuredId}}">Přidat pojištění</a>
                     <a class="btn btn-warning text-light mx-1" th:href="@{/database/insureds/edit}">Editovat pojištěnce</a>
                     <a class="btn btn-danger mx-1" th:href="@{/database/insureds/create}">Odstranit pojištěnce</a>
                 </div>

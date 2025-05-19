@@ -8,7 +8,7 @@ import java.util.List;
 
 public class InsuredDTO {
 
-    public long InsuredId;
+    private long insuredId;
 
     @NotBlank(message = "Vyplňte jméno")
     private String name;
@@ -41,11 +41,11 @@ public class InsuredDTO {
     private List<Long> incidentsIds;
 
     public long getInsuredId() {
-        return InsuredId;
+        return insuredId;
     }
 
     public void setInsuredId(long insuredId) {
-        InsuredId = insuredId;
+        this.insuredId = insuredId;
     }
 
     public String getName() {

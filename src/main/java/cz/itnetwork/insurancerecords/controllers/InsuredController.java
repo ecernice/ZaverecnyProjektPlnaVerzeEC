@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,9 +32,17 @@ public class InsuredController {
         return "pages/database/insureds/create";
     }
 
-    @GetMapping ("/detail")
-    public String renderDetail() {
-
+    @GetMapping ("{insuredId}")
+    public String renderDetail(
+            @PathVariable long insuredId,
+            Model model
+    ) {
+        InsuredDTO insured = insuredService.getById(insuredId);
+        if (insured == null) {
+            throw new RuntimeException("Pojištěnec nebyl nalezen!");
+        }
+        model.addAttribute("insured", insured);
+        System.out.println("Zobrazuji detail pojištěnce");
         return "pages/database/insureds/detail";
     }
 
@@ -58,7 +63,7 @@ public class InsuredController {
 
         insuredService.create(insured);
 
-        return "redirect:/insureds";
+        return "redirect: database/insureds";
     }
 
 }

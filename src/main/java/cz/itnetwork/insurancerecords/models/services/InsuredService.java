@@ -9,4 +9,6 @@ public interface InsuredService {
 
     List<InsuredDTO> getAll();
 
+    InsuredDTO getById(long insuredId);
+
 }

@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Positive;
 
 public class InsuranceDTO {
 
-    public long InsuranceId;
+    private long InsuranceId;
 
     @NotNull(message = "Vyberte typ pojištění")
     private InsuranceType insuranceType;
