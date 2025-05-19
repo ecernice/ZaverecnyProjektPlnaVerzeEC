@@ -12,12 +12,20 @@
 
         <section class="mt-5">
             <ul class="list-group">
-                <li class="list-group-item" th:text="${insurance.insuranceType}"></li>
-                <li class="list-group-item" th:text="${insurance.insuranceSubject}"></li>
-                <li class="list-group-item" th:text="${insurance.amount}"></li>
-                <li class="list-group-item" th:text="${insurance.validFrom}"></li>
-                <li class="list-group-item" th:text="${insurance.validTo}"></li>
+                <li class="list-group-item" th:text="${'Typ pojištění: ' + insurance.insuranceType}"></li>
+                <li class="list-group-item" th:text="${'Předmět pojištění: ' + insurance.insuranceSubject}"></li>
+                <li class="list-group-item" th:text="${'Částka: ' + insurance.amount}"></li>
+                <li class="list-group-item" th:text="${'Platné od: ' + insurance.validFrom}"></li>
+                <li class="list-group-item" th:text="${'Platné do: ' + insurance.validTo}"></li>
             </ul>
+
+            <p class="container-flex">
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-primary mx-1" th:href="@{'/database/incidents/create?insuranceId=' + ${insurance.insuranceId}}">Přidat pojistnou událost</a>
+                <a class="btn btn-warning text-light mx-1" th:href="@{/database/insurance/edit}">Editovat pojištěnce</a>
+                <a class="btn btn-danger mx-1" th:href="@{/database/insurance/create}">Odstranit pojištěnce</a>
+            </div>
+            </p>
 
 
             <p>Navigace: Předchozí, další, 1,2,3...</p>

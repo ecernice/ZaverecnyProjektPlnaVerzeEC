@@ -25,10 +25,6 @@ public class IncidentEntity {
     private int insuranceAmount;
 
     @ManyToOne
-    @JoinColumn(name = "insured_id", nullable = false)
-    private InsuredEntity insured;
-
-    @ManyToOne
     @JoinColumn(name = "insurance_id", nullable = false)
     private InsuranceEntity insurance;
 
@@ -70,14 +66,6 @@ public class IncidentEntity {
 
     public void setInsuranceAmount(int insuranceAmount) {
         this.insuranceAmount = insuranceAmount;
-    }
-
-    public InsuredEntity getInsured() {
-        return insured;
-    }
-
-    public void setInsured(InsuredEntity insured) {
-        this.insured = insured;
     }
 
     public InsuranceEntity getInsurance() {

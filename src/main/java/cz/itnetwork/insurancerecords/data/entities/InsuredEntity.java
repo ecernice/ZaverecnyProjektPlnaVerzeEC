@@ -37,9 +37,6 @@ public class InsuredEntity {
     @OneToMany(mappedBy = "insured")
     private List<InsuranceEntity> insurances;
 
-    @OneToMany(mappedBy = "insured")
-    private List<IncidentEntity> incidents;
-
     public long getInsuredId() {
         return insuredId;
     }
@@ -112,11 +109,4 @@ public class InsuredEntity {
         this.insurances = insurances;
     }
 
-    public List<IncidentEntity> getIncidents() {
-        return incidents;
-    }
-
-    public void setIncidents(List<IncidentEntity> incidents) {
-        this.incidents = incidents;
-    }
 }

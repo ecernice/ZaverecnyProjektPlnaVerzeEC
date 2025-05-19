@@ -1,7 +1,9 @@
 package cz.itnetwork.insurancerecords.models.services;
 
 import cz.itnetwork.insurancerecords.data.entities.IncidentEntity;
+import cz.itnetwork.insurancerecords.data.entities.InsuranceEntity;
 import cz.itnetwork.insurancerecords.data.repositories.IncidentRepository;
+import cz.itnetwork.insurancerecords.data.repositories.InsuranceRepository;
 import cz.itnetwork.insurancerecords.models.dto.IncidentDTO;
 import cz.itnetwork.insurancerecords.models.dto.mappers.IncidentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +18,18 @@ public class IncidentServiceImpl implements IncidentService {
     private IncidentRepository incidentRepository;
 
     @Autowired
+    private InsuranceRepository insuranceRepository;
+
+    @Autowired
     private IncidentMapper incidentMapper;
 
     @Override
     public void create(IncidentDTO incident) {
         IncidentEntity newIncident = incidentMapper.toEntity(incident);
+
+        InsuranceEntity insurance = insuranceRepository.findById(incident.getInsuranceId())
+                        .orElseThrow(() -> new IllegalArgumentException("Pojištění s ID" + incident.getInsuranceId() + " nenalezeno"));
+        newIncident.setInsurance(insurance);
 
         incidentRepository.save(newIncident);
     }

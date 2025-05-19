@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="cz-cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
 <body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
 
+<div class="container main-container my-3" th:fragment="main">
+    <article>
+        <header>
+            <h2 class="h2">Detail pojistné události</h2>
+        </header>
+
+        <section class="mt-5">
+            <ul class="list-group">
+                <li class="list-group-item" th:text="${'Název události: ' + incident.title}"></li>
+                <li class="list-group-item" th:text="${'Popis události: ' + incident.description}"></li>
+                <li class="list-group-item" th:text="${'Datum události: ' + incident.incidentDate}"></li>
+                <li class="list-group-item" th:text="${'Pojistné plnění: ' + incident.insuranceAmount}"></li>
+            </ul>
+
+
+            <p>Navigace: Předchozí, další, 1,2,3...</p>
+        </section>
+    </article>
+</div>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

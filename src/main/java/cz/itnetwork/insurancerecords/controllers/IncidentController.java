@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping ("/database/incidents")
@@ -29,6 +30,19 @@ public class IncidentController {
 
     @GetMapping ("/create")
     public String renderCreateForm(@ModelAttribute IncidentDTO incident) {
+//      public String renderCreateForm(
+//            @RequestParam(value = "insuranceId", required = false) Long insuranceId,
+//            Model model
+//    ) {
+//        IncidentDTO incident = new IncidentDTO();
+//
+//        if (insuranceId != null) {
+//            incident.setInsuranceId(insuranceId);
+//        }
+//
+//        model.addAttribute("incident", incident);
+//
+
         System.out.println("Zobrazuji formulář pro novou pojistnou událost");
         return "pages/database/incidents/create";
     }
@@ -38,7 +52,9 @@ public class IncidentController {
             @PathVariable long incidentId,
             Model model
     ) {
-        IncidentDTO incident = incidentService.getById(incidentId);
+//        IncidentDTO incident = incidentService.getById(incidentId);
+        IncidentDTO incident = Optional.ofNullable(incidentService.getById(incidentId))
+                        .orElse(new IncidentDTO());
         model.addAttribute("incident", incident);
 
         return "pages/database/incidents/detail";
@@ -50,13 +66,15 @@ public class IncidentController {
         return "pages/database/incidents/edit";
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public String createIncident(
             @Valid @ModelAttribute IncidentDTO incident,
             BindingResult result
+//            Model model
     ) {
         if (result.hasErrors()){
             System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
+//            return renderCreateForm(incident.getInsuranceId(), model);}
             return renderCreateForm(incident);}
 
         incidentService.create(incident);

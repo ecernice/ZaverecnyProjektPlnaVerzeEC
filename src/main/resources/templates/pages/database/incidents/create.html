@@ -16,6 +16,8 @@
                 <form method="post"
                       th:action="@{/database/incidents/create}"
                       th:object="${incidentDTO}">
+                    <input type="hidden" th:field="*{insuranceId}" />
+
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <label for="title">Název pojistné události</label>
