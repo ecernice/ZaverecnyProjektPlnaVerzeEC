@@ -29,7 +29,7 @@
                        <td th:text="${insured.street + ', ' + insured.city}" class="align-middle"></td>
                        <td>
                            <a class="btn btn-danger mr-2" th:href="@{/database/insureds/delete}">Odstranit</a>
-                           <a class="btn btn-warning" th:href="@{/database/insureds/edit}">Editovat</a>
+                           <a class="btn btn-warning" th:href="@{'/database/insureds/edit/' + ${insured.insuredId}}">Editovat</a>
                        </td>
                    </tr>
                </tbody>

@@ -58,9 +58,13 @@
             <p class="container-flex">
                 <div class="d-flex justify-content-center">
                     <a class="btn btn-primary mx-1" th:href="@{'/database/insurances/create?insuredId=' + ${insured.insuredId}}">Přidat pojištění</a>
-                    <a class="btn btn-warning text-light mx-1" th:href="@{/database/insureds/edit}">Editovat pojištěnce</a>
+                    <a class="btn btn-warning text-light mx-1" th:href="@{'/database/insureds/edit/' + ${insured.insuredId}}">Editovat pojištěnce</a>
                     <a class="btn btn-danger mx-1" th:href="@{/database/insureds/create}">Odstranit pojištěnce</a>
                 </div>
+            </p>
+
+            <p class="text-center">
+                <a class="btn btn-primary mt-2" th:href="@{/database/insureds}">Zpět na seznam</a>
             </p>
 
             <p>Navigace: Předchozí, další, 1,2,3...</p>

@@ -11,4 +11,6 @@ public interface InsuredService {
 
     InsuredDTO getById(long insuredId);
 
+    void edit(InsuredDTO insured);
+
 }

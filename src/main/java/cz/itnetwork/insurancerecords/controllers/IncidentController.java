@@ -2,6 +2,7 @@ package cz.itnetwork.insurancerecords.controllers;
 
 import cz.itnetwork.insurancerecords.models.dto.IncidentDTO;
 import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
+import cz.itnetwork.insurancerecords.models.dto.mappers.IncidentMapper;
 import cz.itnetwork.insurancerecords.models.services.IncidentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class IncidentController {
 
     @Autowired
     private IncidentService incidentService;
+
+    @Autowired
+    private IncidentMapper incidentMapper;
 
     @GetMapping
     public String renderIndex(Model model) {
@@ -47,8 +51,13 @@ public class IncidentController {
         return "pages/database/incidents/detail";
     }
 
-    @GetMapping ("/edit")
-    public String renderEdit() {
+    @GetMapping ("/edit/{incidentId}")
+    public String renderEditForm(
+            @PathVariable long incidenId,
+            IncidentDTO incident
+    ) {
+        IncidentDTO fetchedIncident = incidentService.getById(incidenId);
+        incidentMapper.updateIncidentDTO(fetchedIncident, incident);
 
         return "pages/database/incidents/edit";
     }
@@ -65,6 +74,21 @@ public class IncidentController {
         IncidentDTO savedIncident = incidentService.create(incident);
 
         return "redirect:/database/incidents/" + savedIncident.getIncidentId();
+    }
+
+    @PostMapping("/edit/{incidentId}")
+    public String editIncident(
+            @PathVariable long incidentId,
+            @Valid IncidentDTO incident,
+            BindingResult result
+    ) {
+        if (result.hasErrors())
+            return renderEditForm(incidentId, incident);
+
+        incident.setIncidentId(incidentId);
+        incidentService.edit(incident);
+
+        return "redirect:/database/incidents";
     }
 
 }

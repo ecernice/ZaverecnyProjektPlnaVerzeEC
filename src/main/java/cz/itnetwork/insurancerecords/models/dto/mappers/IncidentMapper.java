@@ -3,6 +3,7 @@ package cz.itnetwork.insurancerecords.models.dto.mappers;
 import cz.itnetwork.insurancerecords.data.entities.IncidentEntity;
 import cz.itnetwork.insurancerecords.models.dto.IncidentDTO;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface IncidentMapper {
@@ -10,5 +11,9 @@ public interface IncidentMapper {
     IncidentEntity toEntity(IncidentDTO source);
 
     IncidentDTO toDTO(IncidentEntity source);
+
+    void updateIncidentDTO(IncidentDTO source, @MappingTarget IncidentDTO target);
+
+    void updateIncidentEntity(IncidentDTO source, @MappingTarget IncidentEntity target);
 
 }

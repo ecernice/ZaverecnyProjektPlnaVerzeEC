@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="cz-cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
 <body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
 
+<div class="container main-container my-3" th:fragment="main">
+    <article>
+        <div class="row">
+            <header class="col-md-10 offset-md-2">
+                <h2 class="h2 mb-3">Editace pojištěnce</h2>
+            </header>
+        </div>
+        <section class="row">
+            <div class="col-md-10 offset-md-2">
+                <form method="post"
+                      th:action="@{'/database/insureds/edit/' + ${insuredId}}"
+                      th:object="${insuredDTO}">
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="name">Jméno</label>
+                            <input th:field="*{name}" type="text" class="form-control" id="name" placeholder="Jméno">
+                            <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="surname">Příjmení</label>
+                            <input th:field="*{surname}" type="text" class="form-control" id="surname" placeholder="Příjmení">
+                            <small class="text-danger" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="email">Email</label>
+                            <input th:field="*{email}" type="text" class="form-control" id="email" placeholder="Email">
+                            <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="phoneNumber">Telefon</label>
+                            <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber" placeholder="Telefon">
+                            <small class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="street">Ulice a číslo popisné</label>
+                            <input th:field="*{street}" type="text" class="form-control" id="street" placeholder="Ulice a číslo popisné">
+                            <small class="text-danger" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></small>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="city">Město</label>
+                            <input th:field="*{city}" type="text" class="form-control" id="city" placeholder="Město">
+                            <small class="text-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 offset-md-5 mb-3">
+                            <label for="zipcode">PSČ</label>
+                            <input th:field="*{zipcode}" type="text" class="form-control" id="zipcode" placeholder="PSČ">
+                            <small class="text-danger" th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}"></small>
+                        </div>
+
+                    </div>
+
+                    <p class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Uložit</button>
+                    </p>
+                </form>
+            </div>
+        </section>
+    </article>
+</div>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

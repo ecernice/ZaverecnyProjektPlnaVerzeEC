@@ -46,9 +46,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     @Override
     public InsuranceDTO getById(long insuranceId) {
-        InsuranceEntity fetchedInsurance = insuranceRepository
-                .findById(insuranceId)
-                .orElseThrow();
+        InsuranceEntity fetchedInsurance = getInsuranceOrThrow(insuranceId);
         return insuranceMapper.toDTO(fetchedInsurance);
 
     }
@@ -58,6 +56,20 @@ public class InsuranceServiceImpl implements InsuranceService {
         return StreamSupport.stream(insuranceRepository.findByInsuredInsuredId(insuredId).spliterator(), false)
                 .map(i -> insuranceMapper.toDTO(i))
                 .toList();
+    }
+
+    @Override
+    public void edit(InsuranceDTO insurance) {
+        InsuranceEntity fetchedInsurance = getInsuranceOrThrow(insurance.getInsuranceId());
+
+        insuranceMapper.updateInsuranceEntity(insurance, fetchedInsurance);
+        insuranceRepository.save(fetchedInsurance);
+    }
+
+    private InsuranceEntity getInsuranceOrThrow(long insuranceId) {
+        return insuranceRepository
+                .findById(insuranceId)
+                .orElseThrow();
     }
 
 }

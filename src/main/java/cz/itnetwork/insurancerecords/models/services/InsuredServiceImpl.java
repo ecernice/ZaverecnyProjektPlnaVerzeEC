@@ -36,10 +36,23 @@ public class InsuredServiceImpl implements InsuredService {
 
     @Override
     public InsuredDTO getById(long insuredId) {
-        InsuredEntity fetchedInsured = insuredRepository
+        InsuredEntity fetchedInsured = getInsuredOrThrow(insuredId);
+
+        return insuredMapper.toDTO(fetchedInsured);
+    }
+
+    @Override
+    public void edit(InsuredDTO insured) {
+        InsuredEntity fetchedInsured = getInsuredOrThrow(insured.getInsuredId());
+
+        insuredMapper.updateInsuredEntity(insured, fetchedInsured);
+        insuredRepository.save(fetchedInsured);
+    }
+
+    private InsuredEntity getInsuredOrThrow(long insuredId) {
+        return insuredRepository
                 .findById(insuredId)
                 .orElseThrow();
-        return insuredMapper.toDTO(fetchedInsured);
     }
 
 }

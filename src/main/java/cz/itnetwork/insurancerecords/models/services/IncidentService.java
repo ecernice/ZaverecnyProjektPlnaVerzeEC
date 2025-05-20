@@ -11,5 +11,7 @@ public interface IncidentService {
 
     IncidentDTO getById(long incidentId);
 
+    void edit(IncidentDTO incident);
+
 }
 

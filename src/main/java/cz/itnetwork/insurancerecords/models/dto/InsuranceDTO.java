@@ -6,6 +6,7 @@ import cz.itnetwork.insurancerecords.models.enums.InsuranceType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class InsuranceDTO {
 
@@ -21,9 +22,11 @@ public class InsuranceDTO {
     private String insuranceSubject;
 
     @NotNull(message = "Vyplňte datum začátku platnosti")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate validFrom;
 
     @NotNull(message = "Vyplňte datum konce platnosti")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate validTo;
 
     private long insuredId;

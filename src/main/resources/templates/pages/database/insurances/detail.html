@@ -22,11 +22,14 @@
             <p class="container-flex">
             <div class="d-flex justify-content-center">
                 <a class="btn btn-primary mx-1" th:href="@{'/database/incidents/create?insuranceId=' + ${insurance.insuranceId}}">Přidat pojistnou událost</a>
-                <a class="btn btn-warning text-light mx-1" th:href="@{/database/insurance/edit}">Editovat pojištěnce</a>
-                <a class="btn btn-danger mx-1" th:href="@{/database/insurance/create}">Odstranit pojištěnce</a>
+                <a class="btn btn-warning text-light mx-1" th:href="@{'/database/insurances/edit/' + ${insurance.insuranceId}}">Editovat pojištění</a>
+                <a class="btn btn-danger mx-1" th:href="@{/database/insurance/}">Odstranit pojištění</a>
             </div>
             </p>
 
+            <p class="text-center">
+                <a class="btn btn-primary mt-2" th:href="@{/database/insurances}">Zpět na seznam</a>
+            </p>
 
             <p>Navigace: Předchozí, další, 1,2,3...</p>
         </section>

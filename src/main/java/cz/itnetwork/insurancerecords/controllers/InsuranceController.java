@@ -1,7 +1,7 @@
 package cz.itnetwork.insurancerecords.controllers;
 
 import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
-import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
+import cz.itnetwork.insurancerecords.models.dto.mappers.InsuranceMapper;
 import cz.itnetwork.insurancerecords.models.enums.InsuranceType;
 import cz.itnetwork.insurancerecords.models.services.InsuranceService;
 import jakarta.validation.Valid;
@@ -19,6 +19,9 @@ public class InsuranceController {
 
     @Autowired
     private InsuranceService insuranceService;
+
+    @Autowired
+    private InsuranceMapper insuranceMapper;
 
     @GetMapping
     public String renderIndex(Model model) {
@@ -58,13 +61,22 @@ public class InsuranceController {
         return "pages/database/insurances/detail";
     }
 
-    @GetMapping ("/edit")
-    public String renderEdit() {
+    @GetMapping ("/edit/{insuranceId}")
+    public String renderEditForm(
+            @PathVariable long insuranceId,
+            Model model
+    ) {
+        InsuranceDTO fetchedInsurance = insuranceService.getById(insuranceId);
+        model.addAttribute("insuranceDTO", fetchedInsurance);
+        model.addAttribute("insuranceId", insuranceId);
+
+        System.out.println("validFrom: " + fetchedInsurance.getValidFrom());
+        System.out.println("validTo: " + fetchedInsurance.getValidTo());
 
         return "pages/database/insurances/edit";
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public String createInsurance(
             @Valid @ModelAttribute InsuranceDTO insurance,
             BindingResult result
@@ -76,6 +88,25 @@ public class InsuranceController {
         InsuranceDTO saved = insuranceService.create(insurance);
 
         return "redirect:/database/insurances/" + saved.getInsuranceId();
+    }
+
+    @PostMapping("/edit/{insuranceId}")
+    public String editInsurance(
+            @PathVariable long insuranceId,
+            @Valid @ModelAttribute("insuranceDTO") InsuranceDTO insurance,
+            BindingResult result,
+            Model model
+    ) {
+        if (result.hasErrors()) {
+            System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
+            model.addAttribute("insuranceId", insuranceId);
+            return "pages/database/insurances/edit";
+        }
+
+        insurance.setInsuranceId(insuranceId);
+        insuranceService.edit(insurance);
+
+        return "redirect:/database/insurances";
     }
 
 }

@@ -14,4 +14,6 @@ public interface InsuranceService {
 
     List<InsuranceDTO> getByInsuredId(long insuredId);
 
+    void edit(InsuranceDTO insurance);
+
 }

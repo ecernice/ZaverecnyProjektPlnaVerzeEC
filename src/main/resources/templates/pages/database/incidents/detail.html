@@ -18,12 +18,19 @@
                 <li class="list-group-item" th:text="${'Pojistné plnění: ' + incident.insuranceAmount}"></li>
             </ul>
 
-            <p class="text-center">
-                <a class="btn btn-primary mt-1" th:href="@{/database/incidents}">Zpět na seznam</a>
+            <p class="container-flex">
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-warning text-light mx-1" th:href="@{'/database/incidents/edit/' + ${incident.incidentId}}">Editovat pojistnou událost</a>
+                <a class="btn btn-danger mx-1" th:href="@{/database/}">Odstranit pojistnou událost</a>
+            </div>
             </p>
 
+            <p class="text-center">
+                <a class="btn btn-primary mt-2" th:href="@{/database/incidents}">Zpět na seznam</a>
+            </p>
 
-            <p>Navigace: Předchozí, další, 1,2,3...</p>
+            <p class="text-center">Navigace: Předchozí, další, 1,2,3...</p>
+
         </section>
     </article>
 </div>

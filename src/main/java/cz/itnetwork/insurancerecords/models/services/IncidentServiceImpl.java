@@ -44,10 +44,21 @@ public class IncidentServiceImpl implements IncidentService {
 
     @Override
     public IncidentDTO getById(long incidentId) {
-        IncidentEntity fetchedIncident = incidentRepository
-                .findById(incidentId)
-                .orElseThrow();
+        IncidentEntity fetchedIncident = getIncidentOrThrow(incidentId);
         return incidentMapper.toDTO(fetchedIncident);
     }
 
+    @Override
+    public void edit(IncidentDTO incident) {
+        IncidentEntity fetchedIncident = getIncidentOrThrow(incident.getIncidentId());
+
+        incidentMapper.updateIncidentEntity(incident, fetchedIncident);
+        incidentRepository.save(fetchedIncident);
+    }
+
+    private IncidentEntity getIncidentOrThrow(long incidentId) {
+        return incidentRepository
+                .findById(incidentId)
+                .orElseThrow();
+    }
 }

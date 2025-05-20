@@ -2,6 +2,7 @@ package cz.itnetwork.insurancerecords.controllers;
 
 import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
 import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
+import cz.itnetwork.insurancerecords.models.dto.mappers.InsuredMapper;
 import cz.itnetwork.insurancerecords.models.services.InsuranceService;
 import cz.itnetwork.insurancerecords.models.services.InsuredService;
 import jakarta.validation.Valid;
@@ -22,6 +23,9 @@ public class InsuredController {
 
     @Autowired
     private InsuranceService insuranceService;
+
+    @Autowired
+    private InsuredMapper insuredMapper;
 
     @GetMapping
     public String renderIndex(Model model) {
@@ -56,8 +60,13 @@ public class InsuredController {
         return "pages/database/insureds/detail";
     }
 
-    @GetMapping ("/edit")
-    public String renderEdit() {
+    @GetMapping ("/edit/{insuredId}")
+    public String renderEditForm(
+            @PathVariable long insuredId,
+            InsuredDTO insured
+    ) {
+        InsuredDTO fetchedInsured = insuredService.getById(insuredId);
+        insuredMapper.updateInsuredDTO(fetchedInsured, insured);
 
         return "pages/database/insureds/edit";
     }
@@ -74,6 +83,22 @@ public class InsuredController {
         InsuredDTO savedInsured = insuredService.create(insured);
 
         return "redirect:/database/insureds/" + savedInsured.getInsuredId();
+    }
+
+    @PostMapping("/edit/{insuredId}")
+    public String editInsured(
+            @PathVariable long insuredId,
+            @Valid InsuredDTO insured,
+            BindingResult result
+    ) {
+        if (result.hasErrors()){
+            System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
+            return renderEditForm(insuredId, insured);}
+
+        insured.setInsuredId(insuredId);
+        insuredService.edit(insured);
+
+        return "redirect:/database/insureds";
     }
 
 }
