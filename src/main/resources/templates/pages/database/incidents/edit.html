@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="cz-cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
 <body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
 
+<div class="container main-container my-3" th:fragment="main">
+    <article>
+        <div class="row">
+            <header class="col-md-10 offset-md-2">
+                <h2 class="h2 mb-3">Editace pojistné události</h2>
+            </header>
+        </div>
+        <section class="row">
+            <div class="col-md-10 offset-md-2">
+                <form method="post"
+                      th:action="@{'/database/incidents/edit/' + ${incidentId}}"
+                      th:object="${incidentDTO}">
+                    <input type="hidden" th:field="*{insuranceId}" />
+
+                    <div class="row">
+                        <div class="col-md-10 mb-3">
+                            <label for="title">Název pojistné události</label>
+                            <input th:field="*{title}" type="text" class="form-control" id="title" placeholder="Název pojistné události">
+                            <small class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 mb-3">
+                            <label for="description">Popis pojistné události</label>
+                            <textarea th:field="*{description}" type="text" class="form-control" id="description" placeholder="Popis pojistné události">
+                            </textarea>
+                            <small class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="incidentDate">Datum události</label>
+                            <input th:field="*{incidentDate}" type="date" class="form-control" id="incidentDate" placeholder="Datum události">
+                            <small class="text-danger" th:if="${#fields.hasErrors('incidentDate')}" th:errors="*{incidentDate}"></small>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="insuranceAmount">Pojistné plnění</label>
+                            <input th:field="*{insuranceAmount}" type="text" class="form-control" id="insuranceAmount" placeholder="Pojistné plnění">
+                            <small class="text-danger" th:if="${#fields.hasErrors('insuranceAmount')}" th:errors="*{insuranceAmount}"></small>
+                        </div>
+                    </div>
+
+                    <p class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary">Uložit</button>
+                    </p>
+                </form>
+            </div>
+        </section>
+    </article>
+</div>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

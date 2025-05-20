@@ -2,6 +2,7 @@ package cz.itnetwork.insurancerecords.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -16,6 +17,7 @@ public class IncidentDTO {
     private String description;
 
     @NotNull (message = "Vyplňte datum události")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate incidentDate;
 
     @NotNull (message = "Uvěďte částku pojistného plnění")

@@ -1,7 +1,6 @@
 package cz.itnetwork.insurancerecords.controllers;
 
 import cz.itnetwork.insurancerecords.models.dto.IncidentDTO;
-import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
 import cz.itnetwork.insurancerecords.models.dto.mappers.IncidentMapper;
 import cz.itnetwork.insurancerecords.models.services.IncidentService;
 import jakarta.validation.Valid;
@@ -53,10 +52,10 @@ public class IncidentController {
 
     @GetMapping ("/edit/{incidentId}")
     public String renderEditForm(
-            @PathVariable long incidenId,
+            @PathVariable long incidentId,
             IncidentDTO incident
     ) {
-        IncidentDTO fetchedIncident = incidentService.getById(incidenId);
+        IncidentDTO fetchedIncident = incidentService.getById(incidentId);
         incidentMapper.updateIncidentDTO(fetchedIncident, incident);
 
         return "pages/database/incidents/edit";
