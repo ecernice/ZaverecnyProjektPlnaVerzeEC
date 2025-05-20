@@ -13,5 +13,7 @@ public interface IncidentService {
 
     void edit(IncidentDTO incident);
 
+    void remove(long incidentId);
+
 }
 

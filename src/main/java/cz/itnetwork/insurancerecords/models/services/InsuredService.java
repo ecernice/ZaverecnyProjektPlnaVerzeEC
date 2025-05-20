@@ -13,4 +13,6 @@ public interface InsuredService {
 
     void edit(InsuredDTO insured);
 
+    void remove(long insuredId);
+
 }

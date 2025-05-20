@@ -66,6 +66,12 @@ public class InsuranceServiceImpl implements InsuranceService {
         insuranceRepository.save(fetchedInsurance);
     }
 
+    @Override
+    public void remove(long insuranceId) {
+        InsuranceEntity fetchedInsurance = getInsuranceOrThrow(insuranceId);
+        insuranceRepository.delete(fetchedInsurance);
+    }
+
     private InsuranceEntity getInsuranceOrThrow(long insuranceId) {
         return insuranceRepository
                 .findById(insuranceId)

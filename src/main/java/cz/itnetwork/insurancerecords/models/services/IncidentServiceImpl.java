@@ -2,6 +2,7 @@ package cz.itnetwork.insurancerecords.models.services;
 
 import cz.itnetwork.insurancerecords.data.entities.IncidentEntity;
 import cz.itnetwork.insurancerecords.data.entities.InsuranceEntity;
+import cz.itnetwork.insurancerecords.data.entities.InsuredEntity;
 import cz.itnetwork.insurancerecords.data.repositories.IncidentRepository;
 import cz.itnetwork.insurancerecords.data.repositories.InsuranceRepository;
 import cz.itnetwork.insurancerecords.models.dto.IncidentDTO;
@@ -54,6 +55,12 @@ public class IncidentServiceImpl implements IncidentService {
 
         incidentMapper.updateIncidentEntity(incident, fetchedIncident);
         incidentRepository.save(fetchedIncident);
+    }
+
+    @Override
+    public void remove(long incidentId) {
+        IncidentEntity fetchedIncident = getIncidentOrThrow(incidentId);
+        incidentRepository.delete(fetchedIncident);
     }
 
     private IncidentEntity getIncidentOrThrow(long incidentId) {

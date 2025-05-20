@@ -49,6 +49,12 @@ public class InsuredServiceImpl implements InsuredService {
         insuredRepository.save(fetchedInsured);
     }
 
+    @Override
+    public void remove(long insuredId) {
+        InsuredEntity fetchedInsured = getInsuredOrThrow(insuredId);
+        insuredRepository.delete(fetchedInsured);
+    }
+
     private InsuredEntity getInsuredOrThrow(long insuredId) {
         return insuredRepository
                 .findById(insuredId)

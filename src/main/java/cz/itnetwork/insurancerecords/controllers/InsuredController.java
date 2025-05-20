@@ -71,7 +71,7 @@ public class InsuredController {
         return "pages/database/insureds/edit";
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public String createInsured(
             @Valid @ModelAttribute InsuredDTO insured,
             BindingResult result
@@ -100,5 +100,16 @@ public class InsuredController {
 
         return "redirect:/database/insureds";
     }
+
+    @PostMapping("/delete")
+    public String deleteInsured(
+            @RequestParam("insuredId") long insuredId
+    ) {
+        insuredService.remove(insuredId);
+        System.out.println("Mazání pojištěnce s ID: " + insuredId);
+
+        return "redirect:/database/insureds";
+    }
+
 
 }

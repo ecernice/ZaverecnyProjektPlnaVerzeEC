@@ -16,4 +16,6 @@ public interface InsuranceService {
 
     void edit(InsuranceDTO insurance);
 
+    void remove(long insuranceId);
+
 }
