@@ -90,4 +90,14 @@ public class IncidentController {
         return "redirect:/database/incidents";
     }
 
+    @PostMapping("/delete")
+    public String deleteIncident(
+            @RequestParam("incidentId") long incidentId
+    ) {
+        incidentService.remove(incidentId);
+        System.out.println("Mazání pojistné události s ID: " + incidentId);
+
+        return "redirect:/database/incidents";
+    }
+
 }

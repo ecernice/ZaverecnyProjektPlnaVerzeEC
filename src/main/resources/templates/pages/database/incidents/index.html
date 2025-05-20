@@ -24,8 +24,11 @@
                 <tr th:each="incident: ${incidents}" th:if="${incident != null}" >
                     <td><a th:href="@{'/database/incidents/' + ${incident.incidentId}}" th:text="${incident.incidentId}"></a></td>
                     <td th:text="${incident.title}" class="align-middle"></td>
-                    <td>
-                        <a class="btn btn-danger mr-2" th:href="@{/database/insurances/delete}">Odstranit</a>
+                    <td class="d-flex gap-2">
+                        <form th:action="@{/database/incidents/delete}" method="post" th:object="${incident}">
+                            <input type="hidden" th:name="incidentId" th:value="${incident.incidentId}" />
+                            <button type="submit" class="btn btn-danger mr-2">Odstranit</button>
+                        </form>
                         <a class="btn btn-warning" th:href="@{'/database/incidents/edit/' + ${incident.incidentId}}">Editovat</a>
                     </td>
                 </tr>
