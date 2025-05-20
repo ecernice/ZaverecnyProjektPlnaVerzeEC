@@ -109,4 +109,15 @@ public class InsuranceController {
         return "redirect:/database/insurances";
     }
 
+    @PostMapping("/delete")
+    public String deleteInsurance(
+            @RequestParam("insuranceId") long insuranceId
+    ) {
+        insuranceService.remove(insuranceId);
+        System.out.println("Mazání pojištění s ID: " + insuranceId);
+
+        return "redirect:/database/insurances";
+    }
+
+
 }

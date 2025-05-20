@@ -27,8 +27,11 @@
                 <tr th:each="insurance: ${insurances}" >
                     <td><a th:href="@{'/database/insurances/' + ${insurance.insuranceId}}" th:text="${insurance.insuranceId}"></a></td>
                     <td th:text="${insurance.insuranceSubject}" class="align-middle"></td>
-                    <td>
-                        <a class="btn btn-danger mr-2" th:href="@{/database/insurances/delete}">Odstranit</a>
+                    <td class="d-flex gap-2">
+                        <form th:action="@{/database/insurances/delete}" method="post" th:object="${insurance}">
+                            <input type="hidden" th:name="insuranceId" th:value="${insurance.insuranceId}" />
+                            <button type="submit" class="btn btn-danger mr-2">Odstranit</button>
+                        </form>
                         <a class="btn btn-warning" th:href="@{'/database/insurances/edit/' + ${insurance.insuranceId}}">Editovat</a>
                     </td>
                 </tr>
