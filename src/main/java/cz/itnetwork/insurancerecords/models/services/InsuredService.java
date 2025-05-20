@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface InsuredService {
 
-    void create(InsuredDTO insured);
+    InsuredDTO create(InsuredDTO insured);
 
     List<InsuredDTO> getAll();
 

@@ -19,10 +19,12 @@ public class InsuredServiceImpl implements InsuredService {
     private InsuredMapper insuredMapper;
 
     @Override
-    public void create(InsuredDTO insured) {
+    public InsuredDTO create(InsuredDTO insured) {
         InsuredEntity newInsured = insuredMapper.toEntity(insured);
 
-        insuredRepository.save(newInsured);
+        InsuredEntity saved = insuredRepository.save(newInsured);
+
+        return insuredMapper.toDTO(saved);
     }
 
     @Override

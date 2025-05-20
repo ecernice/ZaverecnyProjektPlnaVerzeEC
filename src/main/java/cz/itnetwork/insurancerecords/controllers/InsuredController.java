@@ -34,6 +34,7 @@ public class InsuredController {
     @GetMapping ("/create")
     public String renderCreateForm(@ModelAttribute InsuredDTO insured) {
         System.out.println("Zobrazuji formulář pro nového pojištěnce");
+
         return "pages/database/insureds/create";
     }
 
@@ -70,9 +71,9 @@ public class InsuredController {
             System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
             return renderCreateForm(insured);}
 
-        insuredService.create(insured);
+        InsuredDTO savedInsured = insuredService.create(insured);
 
-        return "redirect: database/insureds";
+        return "redirect:/database/insureds/" + savedInsured.getInsuredId();
     }
 
 }
