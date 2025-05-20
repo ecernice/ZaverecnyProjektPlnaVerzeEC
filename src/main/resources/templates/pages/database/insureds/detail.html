@@ -49,7 +49,7 @@
                     <td th:text="${insurance.amount}" class="align-middle"></td>
                     <td>
                         <a class="btn btn-danger mr-2" th:href="@{/database/insurances/delete}">Odstranit</a>
-                        <a class="btn btn-warning" th:href="@{/database/insurance/edit}">Editovat</a>
+                        <a class="btn btn-warning" th:href="@{'/database/insurances/edit/' + ${insurance.insuranceId}}">Editovat</a>
                     </td>
                 </tr>
                 </tbody>
