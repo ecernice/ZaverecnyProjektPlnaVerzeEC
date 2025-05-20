@@ -49,4 +49,11 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     }
 
+    @Override
+    public List<InsuranceDTO> getByInsuredId(long insuredId) {
+        return StreamSupport.stream(insuranceRepository.findByInsuredInsuredId(insuredId).spliterator(), false)
+                .map(i -> insuranceMapper.toDTO(i))
+                .toList();
+    }
+
 }

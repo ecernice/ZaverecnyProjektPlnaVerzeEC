@@ -13,4 +13,6 @@ public interface InsuranceService {
 
     InsuranceDTO getById(long insuranceId);
 
+    List<InsuranceDTO> getByInsuredId(long insuredId);
+
 }

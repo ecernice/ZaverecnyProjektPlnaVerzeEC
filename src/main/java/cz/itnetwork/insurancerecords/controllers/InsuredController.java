@@ -1,6 +1,8 @@
 package cz.itnetwork.insurancerecords.controllers;
 
+import cz.itnetwork.insurancerecords.models.dto.InsuranceDTO;
 import cz.itnetwork.insurancerecords.models.dto.InsuredDTO;
+import cz.itnetwork.insurancerecords.models.services.InsuranceService;
 import cz.itnetwork.insurancerecords.models.services.InsuredService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class InsuredController {
 
     @Autowired
     private InsuredService insuredService;
+
+    @Autowired
+    private InsuranceService insuranceService;
 
     @GetMapping
     public String renderIndex(Model model) {
@@ -41,7 +46,10 @@ public class InsuredController {
         if (insured == null) {
             throw new RuntimeException("Pojištěnec nebyl nalezen!");
         }
+        List<InsuranceDTO> insurances = insuranceService.getByInsuredId(insuredId);
+
         model.addAttribute("insured", insured);
+        model.addAttribute("insurances", insurances);
         System.out.println("Zobrazuji detail pojištěnce");
 
         return "pages/database/insureds/detail";
