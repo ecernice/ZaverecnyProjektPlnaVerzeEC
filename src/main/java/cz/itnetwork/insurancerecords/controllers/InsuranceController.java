@@ -44,7 +44,11 @@ public class InsuranceController {
         @PathVariable long insuranceId,
                 Model model
     ) {
+        System.out.println("Načítám detail pojištění s ID: " + insuranceId);
+
         InsuranceDTO insurance = insuranceService.getById(insuranceId);
+        System.out.println("Načtené pojištění: " + insurance);
+
         if (insurance == null) {
             throw new RuntimeException("Pojištění nebylo nalezeno!");
         }
@@ -69,9 +73,9 @@ public class InsuranceController {
             System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
             return renderCreateForm(insurance);}
 
-        insuranceService.create(insurance);
+        InsuranceDTO saved = insuranceService.create(insurance);
 
-        return "redirect:/insurances";
+        return "redirect:/database/insurances/" + saved.getInsuranceId();
     }
 
 }

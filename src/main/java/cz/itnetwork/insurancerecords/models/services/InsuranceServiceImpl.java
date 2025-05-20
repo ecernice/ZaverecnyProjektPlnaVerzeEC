@@ -25,13 +25,17 @@ public class InsuranceServiceImpl implements InsuranceService {
     private InsuranceMapper insuranceMapper;
 
     @Override
-    public void create(InsuranceDTO insurance) {
+    public InsuranceDTO create(InsuranceDTO insurance) {
         InsuranceEntity newInsurance = insuranceMapper.toEntity(insurance);
         InsuredEntity insured = insuredRepository.findById(insurance.getInsuredId())
                 .orElseThrow(() -> new IllegalArgumentException("Pojištěnec s ID " + insurance.getInsuredId() + " nenalezen"));
         newInsurance.setInsured(insured);
-        insuranceRepository.save(newInsurance);
+
+        InsuranceEntity saved = insuranceRepository.save(newInsurance);
+
+        return insuranceMapper.toDTO(saved);
     }
+
 
     @Override
     public List<InsuranceDTO> getAll() {

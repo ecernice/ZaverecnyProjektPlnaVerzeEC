@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="insurance: ${insurances}" >
-                    <td th:text="${insurance.insuranceSubject}" class="align-middle"></td>
+                    <td><a th:href="@{/database/insurances/{id}(id=${insurance.insuranceId})}" th:text="${insurance.insuranceSubject}" class="align-middle"></a></td>
                     <td th:text="${insurance.amount}" class="align-middle"></td>
                     <td>
                         <a class="btn btn-danger mr-2" th:href="@{/database/insurances/delete}">Odstranit</a>
