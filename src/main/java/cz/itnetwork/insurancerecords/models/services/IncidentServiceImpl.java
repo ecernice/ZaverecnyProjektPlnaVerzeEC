@@ -24,14 +24,15 @@ public class IncidentServiceImpl implements IncidentService {
     private IncidentMapper incidentMapper;
 
     @Override
-    public void create(IncidentDTO incident) {
+    public IncidentDTO create(IncidentDTO incident) {
         IncidentEntity newIncident = incidentMapper.toEntity(incident);
-
         InsuranceEntity insurance = insuranceRepository.findById(incident.getInsuranceId())
                         .orElseThrow(() -> new IllegalArgumentException("Pojištění s ID" + incident.getInsuranceId() + " nenalezeno"));
         newIncident.setInsurance(insurance);
 
-        incidentRepository.save(newIncident);
+        IncidentEntity saved = incidentRepository.save(newIncident);
+
+        return incidentMapper.toDTO(saved);
     }
 
     @Override

@@ -29,20 +29,7 @@ public class IncidentController {
     }
 
     @GetMapping ("/create")
-    public String renderCreateForm(@ModelAttribute IncidentDTO incident) {
-//      public String renderCreateForm(
-//            @RequestParam(value = "insuranceId", required = false) Long insuranceId,
-//            Model model
-//    ) {
-//        IncidentDTO incident = new IncidentDTO();
-//
-//        if (insuranceId != null) {
-//            incident.setInsuranceId(insuranceId);
-//        }
-//
-//        model.addAttribute("incident", incident);
-//
-
+        public String renderCreateForm(@ModelAttribute IncidentDTO incident) {
         System.out.println("Zobrazuji formulář pro novou pojistnou událost");
         return "pages/database/incidents/create";
     }
@@ -52,10 +39,10 @@ public class IncidentController {
             @PathVariable long incidentId,
             Model model
     ) {
-//        IncidentDTO incident = incidentService.getById(incidentId);
         IncidentDTO incident = Optional.ofNullable(incidentService.getById(incidentId))
                         .orElse(new IncidentDTO());
         model.addAttribute("incident", incident);
+        System.out.println("Zobrazuji detail pojistné události");
 
         return "pages/database/incidents/detail";
     }
@@ -70,16 +57,14 @@ public class IncidentController {
     public String createIncident(
             @Valid @ModelAttribute IncidentDTO incident,
             BindingResult result
-//            Model model
     ) {
         if (result.hasErrors()){
             System.out.println("Formulář obsahuje chyby:" + result.getAllErrors());
-//            return renderCreateForm(incident.getInsuranceId(), model);}
             return renderCreateForm(incident);}
 
-        incidentService.create(incident);
+        IncidentDTO savedIncident = incidentService.create(incident);
 
-        return "redirect:/incidents";
+        return "redirect:/database/incidents/" + savedIncident.getIncidentId();
     }
 
 }
