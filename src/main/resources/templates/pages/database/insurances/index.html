@@ -5,6 +5,8 @@
 <header th:replace="~{fragments/layout.html :: header}"></header>
 
 <div class="container main-container my-3" th:fragment="main">
+    <div class="py-2 flash-message message-success" th:text="${success}" th:if="${success}"></div>
+
     <article>
         <header>
             <h2 class="h2">Pojištění</h2>

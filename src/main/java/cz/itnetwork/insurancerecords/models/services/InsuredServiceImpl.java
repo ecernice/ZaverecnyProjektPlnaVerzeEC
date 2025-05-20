@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
+/**
+ * Implementation of the InsuredService interface.
+ * Handles the business logic and interacts with the repository layer.
+ */
 @Service
 public class InsuredServiceImpl implements InsuredService {
 
@@ -18,6 +22,12 @@ public class InsuredServiceImpl implements InsuredService {
     @Autowired
     private InsuredMapper insuredMapper;
 
+    /**
+     * Creates a new insured and saves it to the database.
+     *
+     * @param insured DTO containing data for the new insured
+     * @return the saved insured as a DTO
+     */
     @Override
     public InsuredDTO create(InsuredDTO insured) {
         InsuredEntity newInsured = insuredMapper.toEntity(insured);
@@ -27,6 +37,11 @@ public class InsuredServiceImpl implements InsuredService {
         return insuredMapper.toDTO(saved);
     }
 
+    /**
+     * Retrieves all insureds from the database and maps them to DTOs.
+     *
+     * @return list of all insureds
+     */
     @Override
     public List<InsuredDTO> getAll() {
         return StreamSupport.stream(insuredRepository.findAll().spliterator(), false)
@@ -34,6 +49,12 @@ public class InsuredServiceImpl implements InsuredService {
                 .toList();
     }
 
+    /**
+     * Retrieves an insured by its ID.
+     *
+     * @param insuredId ID of the insured
+     * @return DTO representing the insured
+     */
     @Override
     public InsuredDTO getById(long insuredId) {
         InsuredEntity fetchedInsured = getInsuredOrThrow(insuredId);
@@ -41,6 +62,11 @@ public class InsuredServiceImpl implements InsuredService {
         return insuredMapper.toDTO(fetchedInsured);
     }
 
+    /**
+     * Updates an existing insured with new data.
+     *
+     * @param insured DTO with updated data
+     */
     @Override
     public void edit(InsuredDTO insured) {
         InsuredEntity fetchedInsured = getInsuredOrThrow(insured.getInsuredId());
@@ -49,12 +75,23 @@ public class InsuredServiceImpl implements InsuredService {
         insuredRepository.save(fetchedInsured);
     }
 
+    /**
+     * Deletes an insured by its ID.
+     *
+     * @param insuredId ID of the insured to delete
+     */
     @Override
     public void remove(long insuredId) {
         InsuredEntity fetchedInsured = getInsuredOrThrow(insuredId);
         insuredRepository.delete(fetchedInsured);
     }
 
+    /**
+     * Helper method for retrieving an insured by ID or throwing an exception.
+     *
+     * @param insuredId ID of the insured
+     * @return the found InsuredEntity
+     */
     private InsuredEntity getInsuredOrThrow(long insuredId) {
         return insuredRepository
                 .findById(insuredId)

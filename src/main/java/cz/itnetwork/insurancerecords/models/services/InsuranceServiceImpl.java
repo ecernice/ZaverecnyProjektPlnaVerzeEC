@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
+/**
+ * Implementation of the InsuranceService interface.
+ * Handles the business logic and interacts with the repository layer.
+ */
 @Service
 public class InsuranceServiceImpl implements InsuranceService {
 
@@ -24,6 +28,13 @@ public class InsuranceServiceImpl implements InsuranceService {
     @Autowired
     private InsuranceMapper insuranceMapper;
 
+    /**
+     * Creates a new insurance and saves it to the database.
+     * Ensures that the associated insured exists.
+     *
+     * @param insurance DTO containing data for the new insurance
+     * @return the saved insurance as a DTO
+     */
     @Override
     public InsuranceDTO create(InsuranceDTO insurance) {
         InsuranceEntity newInsurance = insuranceMapper.toEntity(insurance);
@@ -36,7 +47,11 @@ public class InsuranceServiceImpl implements InsuranceService {
         return insuranceMapper.toDTO(saved);
     }
 
-
+    /**
+     * Retrieves all insurances from the database and maps them to DTOs.
+     *
+     * @return list of all insurances
+     */
     @Override
     public List<InsuranceDTO> getAll() {
         return StreamSupport.stream(insuranceRepository.findAll().spliterator(), false)
@@ -44,6 +59,12 @@ public class InsuranceServiceImpl implements InsuranceService {
                 .toList();
     }
 
+    /**
+     * Retrieves an insurance by its ID.
+     *
+     * @param insuranceId ID of the insurance
+     * @return DTO representing the insurance
+     */
     @Override
     public InsuranceDTO getById(long insuranceId) {
         InsuranceEntity fetchedInsurance = getInsuranceOrThrow(insuranceId);
@@ -51,6 +72,12 @@ public class InsuranceServiceImpl implements InsuranceService {
 
     }
 
+    /**
+     * Retrieves the insurance by its insureds (foreign key) ID.
+     *
+     * @param insuredId ID of the insured connected to the insurance
+     * @return list of insurances connected to specific insured
+     */
     @Override
     public List<InsuranceDTO> getByInsuredId(long insuredId) {
         return StreamSupport.stream(insuranceRepository.findByInsuredInsuredId(insuredId).spliterator(), false)
@@ -58,6 +85,11 @@ public class InsuranceServiceImpl implements InsuranceService {
                 .toList();
     }
 
+    /**
+     * Updates an existing insurance with new data.
+     *
+     * @param insurance DTO with updated data
+     */
     @Override
     public void edit(InsuranceDTO insurance) {
         InsuranceEntity fetchedInsurance = getInsuranceOrThrow(insurance.getInsuranceId());
@@ -66,12 +98,23 @@ public class InsuranceServiceImpl implements InsuranceService {
         insuranceRepository.save(fetchedInsurance);
     }
 
+    /**
+     * Deletes an insurance by its ID.
+     *
+     * @param insuranceId ID of the insurance to delete
+     */
     @Override
     public void remove(long insuranceId) {
         InsuranceEntity fetchedInsurance = getInsuranceOrThrow(insuranceId);
         insuranceRepository.delete(fetchedInsurance);
     }
 
+    /**
+     * Helper method for retrieving an insurance by ID or throwing an exception.
+     *
+     * @param insuranceId ID of the insurance
+     * @return the found InsuranceEntity
+     */
     private InsuranceEntity getInsuranceOrThrow(long insuranceId) {
         return insuranceRepository
                 .findById(insuranceId)

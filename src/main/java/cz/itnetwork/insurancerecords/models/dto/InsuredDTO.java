@@ -6,20 +6,29 @@ import jakarta.validation.constraints.Pattern;
 
 import java.util.List;
 
+/**
+ * Data Transfer Object (DTO) representing a single insured person.
+ * This class is used to transfer data about the insured between the application layers, typically between the controller and service layers.
+ */
 public class InsuredDTO {
 
+    /** Unique identifier of the insured person */
     private long insuredId;
 
+    /** First name of the insured person */
     @NotBlank(message = "Vyplňte jméno")
     private String name;
 
+    /** Surname of the insured person */
     @NotBlank(message = "Vyplňte příjmení")
     private String surname;
 
+    /** Email address of the insured person */
     @NotBlank(message = "Vyplňte email")
     @Email(message = "Zadejte platný formát emailu")
     private String email;
 
+    /** Phone number of the insured person */
     @NotBlank(message = "Zadejte telefonní číslo")
     @Pattern(
             regexp = "^(\\+\\d{1,4}|00\\d{1,4})?\\s?-?(\\d{3})\\s?-?(\\d{3})\\s?-?(\\d{3,4})$",
@@ -27,17 +36,22 @@ public class InsuredDTO {
     )
     private String phoneNumber;
 
+    /** Street address of the insured person */
     @NotBlank(message = "Vyplňte ulici a číslo popisné")
     private String street;
 
+    /** City address of the insured person */
     @NotBlank(message = "Vyplňte ulici a číslo popisné")
     private String city;
 
+    /** Zip code of the insured person's address */
     @NotBlank(message = "Vyplňte PSČ")
     private String zipcode;
 
+    /**List of the related insurances IDs */
     private List<Long> insurancesIDs;
 
+    /**List of the related incidents IDs */
     private List<Long> incidentsIds;
 
     public long getInsuredId() {

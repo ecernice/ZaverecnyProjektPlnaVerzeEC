@@ -4,26 +4,36 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+/**
+ * Entity class representing a reported insurance incident stored in the database.
+ * Each incident is linked to a specific insurance record.
+ */
 @Entity
 @Table(name = "Incidents")
 public class IncidentEntity {
 
+    /** Primary key of the incident */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long incidentId;
 
+    /** Short title of the incident */
     @Column(nullable = false)
     private String title;
 
+    /** Detailed description of the incident */
     @Column(nullable = false)
     private String description;
 
+    /**Date, when the incident was happened*/
     @Column(nullable = false)
     private LocalDate incidentDate;
 
+    /**An amount to be paid in case of insurance incident*/
     @Column(nullable = false)
     private int insuranceAmount;
 
+    /** ID of the related insurance */
     @ManyToOne
     @JoinColumn(name = "insurance_id", nullable = false)
     private InsuranceEntity insurance;

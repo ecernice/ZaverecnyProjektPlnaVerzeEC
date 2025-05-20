@@ -5,35 +5,48 @@ import cz.itnetwork.insurancerecords.data.entities.InsuranceEntity;
 
 import java.util.List;
 
+/**
+ * Entity class representing a person who holds insurance.
+ * This class is mapped to the database table storing personal details of insured people, and is linked to their insurances.
+ */
 @Entity
 @Table(name = "Insureds")
 public class InsuredEntity {
 
+    /** Primary key of the insured person */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long insuredId;
 
+    /** First name of the insured */
     @Column(nullable = false)
     private String name;
 
+    /** Surname of the insured person */
     @Column(nullable = false)
     private String surname;
 
+    /** Email address of the insured person */
     @Column(nullable = false)
     private String email;
 
+    /** Phone number of the insured person */
     @Column(nullable = false)
     private String phoneNumber;
 
+    /** Street address of the insured person */
     @Column(nullable = false)
     private String street;
 
+    /** City address of the insured person */
     @Column(nullable = false)
     private String city;
 
+    /** Zip code of the insured person's address */
     @Column(nullable = false)
     private String zipcode;
 
+    /**List of the related insurances */
     @OneToMany(mappedBy = "insured")
     private List<InsuranceEntity> insurances;
 

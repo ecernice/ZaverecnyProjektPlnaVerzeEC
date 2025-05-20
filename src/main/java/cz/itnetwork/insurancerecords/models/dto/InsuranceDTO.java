@@ -8,27 +8,38 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * Data Transfer Object (DTO) representing a single insurance record.
+ * This class is used to transfer data about insurance between the application layers, and usually contains a reference to the insured person.
+ */
 public class InsuranceDTO {
 
+    /** Unique identifier of the insurance record */
     private long insuranceId;
 
+    /** Type of insurance (e.g. life, property, etc.) */
     @NotNull(message = "Vyberte typ pojištění")
     private InsuranceType insuranceType;
 
+    /** Amount covered by the insurance */
     @Positive(message = "Vyplňte částku - kladné celé číslo")
     private int amount;
 
+    /**Subject covered by insurance*/
     @NotBlank(message = "Vyplňte předmět pojištění")
     private String insuranceSubject;
 
+    /**Effective date*/
     @NotNull(message = "Vyplňte datum začátku platnosti")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate validFrom;
 
+    /**Expiration date*/
     @NotNull(message = "Vyplňte datum konce platnosti")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate validTo;
 
+    /** ID of the insured person the policy is assigned to */
     private long insuredId;
 
     public long getInsuranceId() {
